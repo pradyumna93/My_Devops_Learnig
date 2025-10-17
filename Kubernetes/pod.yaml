@@ -1,0 +1,33 @@
+ApiVersion: v1
+Kind: Pod
+Metadata:
+  Name: my-app-pod
+Spec:
+  Containers:
+    - Name: my-app-container
+      Image: my-app-image:latest
+      Ports:
+        - ContainerPort: 80
+      Env:
+        - Name: ENVIRONMENT
+          Value: production
+        - Name: LOG_LEVEL
+          Value: info
+      Resources:
+        Limits:
+          Memory: "512Mi"
+          Cpu: "1"
+        Requests:
+          Memory: "256Mi"
+          Cpu: "0.5"  
+  RestartPolicy: Always 
+  
+
+#create a pod with a single container running 'my-app-image:latest', exposing port 80, with environment variables for environment and log level, and resource limits and requests defined.
+# The pod is set to always restart on failure.
+# Save this configuration in a file named 'pod.yaml' and apply it using 'kubectl apply -f pod.yaml'.
+
+
+
+#create pod through command line:
+# kubectl run my-app-pod --image=my-app-image:latest --port=80
